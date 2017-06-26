@@ -1,2 +1,6 @@
+# Contains password
 env.py
+credentials
+
+# Installed by pip
 app/lib
