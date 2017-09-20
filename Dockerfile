@@ -14,16 +14,6 @@ COPY . ${APP_HOME}
 
 RUN pip install -r ${APP_HOME}/requirements.txt -t ${APP_HOME}/lib
 
-#
-# Log configuration
-
-RUN mkdir -p /root/.aws
-RUN mkdir -p /var/awslogs/state
-COPY ./credentials /root/.aws/credentials
 COPY docker-cmd.sh /docker-cmd.sh
-
-RUN apt-get install -y curl
-RUN curl https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py -O
-RUN python awslogs-agent-setup.py --non-interactive -c ${APP_HOME}/aws-log.cfg --region ap-southeast-2
 
 CMD [ "/docker-cmd.sh" ]
